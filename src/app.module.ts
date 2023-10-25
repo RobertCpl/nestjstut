@@ -8,11 +8,11 @@ import { Student } from './student.entities';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: '127.0.0.1',
+      host: 'mysql',
       port: 3306,
-      username: 'root',
-      password: 'Rcieplinski81!',
-      database: 'student_data',
+      username: 'Robert',
+      password: 'Robert',
+      database: 'students',
       entities: [Student],
       synchronize: true,
     }),

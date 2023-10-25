@@ -1,0 +1,30 @@
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 'robert'
+      MYSQL_DATABASE: 'student'
+    ports:
+      - 3306:3306
+
+    # restart: always
+    # volumes:
+    #   - type: volume
+    #     source: db-data
+    #     target: /var/lib/mysql
+
+  # nest:
+  #   image: node:slim
+  #   container_name: nest
+  #   depends_on:
+  #     - db
+  #   # restart: always
+  #   working_dir: /app
+  #   volumes:
+  #     # - type: bind
+  #     #   source: .
+  #     #   target: /app
+  #     - ./:/app
+  #   ports:
+  #     - '127.0.0.1:4000:4000'
+  #   command: npm run start:dev

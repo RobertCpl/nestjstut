@@ -1,0 +1,41 @@
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: 'Rcieplinski81!'
+      MYSQL_DATABASE: 'students'
+      MYSQL_USER: 'Robert'
+      MYSQL_PASSWORD: 'Robert'
+    networks:
+      network:
+        aliases:
+          - mysql
+    ports:
+      - '3306'
+    # volumes:
+    #   - ./db-data:/var/lib/mysql
+    # nie działa korzystanie z volumenów dockera tylko type=mount
+
+  nest:
+    image: node:slim
+    container_name: nest
+    depends_on:
+      - db
+    working_dir: /app
+    volumes:
+      # - type: bind
+      #   source: .
+      #   target: /app
+      - ./:/app
+    networks:
+      network:
+        aliases:
+          - nest
+    ports:
+      - 127.0.0.1:4000:4000
+    command: npm run start:dev
+
+networks:
+  network:
